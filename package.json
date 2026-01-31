@@ -1,0 +1,31 @@
+{
+  "name": "data-vision-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "数据可视化分析应用 - pnpm monorepo",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter @data-vision/server dev\" \"pnpm --filter @data-vision/web dev\"",
+    "dev:web": "pnpm --filter @data-vision/web dev",
+    "dev:server": "pnpm --filter @data-vision/server dev",
+    "build": "pnpm --filter @data-vision/shared build && pnpm --filter @data-vision/web build && pnpm --filter @data-vision/server build",
+    "build:web": "pnpm --filter @data-vision/web build",
+    "build:server": "pnpm --filter @data-vision/server build",
+    "start": "pnpm --filter @data-vision/server start",
+    "package": "pnpm build && pnpm --filter @data-vision/server package",
+    "package:win": "pnpm build && pnpm --filter @data-vision/server package:win",
+    "package:mac": "pnpm build && pnpm --filter @data-vision/server package:mac",
+    "package:mac-arm": "pnpm build && pnpm --filter @data-vision/server package:mac-arm",
+    "package:all": "pnpm build && pnpm --filter @data-vision/server package:all",
+    "portable": "bash scripts/create-portable.sh",
+    "clean": "rimraf packages/*/dist packages/*/node_modules node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
