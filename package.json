@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "数据可视化分析应用 - pnpm monorepo",
+  "packageManager": "pnpm@8.6.1",
   "scripts": {
     "dev": "concurrently \"pnpm --filter @data-vision/server dev\" \"pnpm --filter @data-vision/web dev\"",
     "dev:web": "pnpm --filter @data-vision/web dev",

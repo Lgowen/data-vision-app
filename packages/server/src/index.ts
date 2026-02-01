@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { apiRouter } from './routes/api'
 
@@ -15,8 +16,18 @@ app.use(express.json())
 app.use('/api', apiRouter)
 
 // 静态文件服务（生产环境提供前端文件）
+// pkg 打包时 __dirname 指向 /snapshot/... 虚拟路径
 const staticPath = path.join(__dirname, 'public')
-app.use(express.static(staticPath))
+console.log('Static path:', staticPath)
+console.log('Static path exists:', fs.existsSync(staticPath))
+
+// 检查静态文件目录是否存在
+if (fs.existsSync(staticPath)) {
+  console.log('Static files found, serving from:', staticPath)
+  app.use(express.static(staticPath))
+} else {
+  console.log('Static files not found at:', staticPath)
+}
 
 // SPA 路由回退
 app.get('*', (req, res) => {

@@ -1,10 +1,16 @@
 # Dependencies
 node_modules/
 packages/*/node_modules/
+.pnpm-store/
 
 # Build output
 dist/
 packages/*/dist/
+*.tsbuildinfo
+
+# Vite build artifacts
+packages/web/vite.config.js
+packages/web/vite.config.d.ts
 
 # Editor directories and files
 .vscode/*
@@ -26,11 +32,58 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local env files
+.env
 .env.local
 .env.*.local
 
 # Uploads (user data)
 uploads/
 
-# Package output
+# ============================================
+# 打包产物 (编译后的可执行文件，体积大)
+# ============================================
+
+# Go 编译产物
+go-dist/
+packages/go-server/data-vision-server
+packages/go-server/public/
+
+# pkg 打包产物
+pkg-dist/
+
+# SEA 打包产物
+sea-dist/
+
+# 便携包产物
+portable-dist/
+
+# 压缩包
+*.zip
+*.tar.gz
+*.rar
+
+# 可执行文件
 *.exe
+data-vision-*
+
+# ============================================
+# Go 相关
+# ============================================
+packages/go-server/go.sum
+
+# ============================================
+# 系统文件
+# ============================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ============================================
+# 临时文件
+# ============================================
+tmp/
+temp/
+*.tmp
+*.temp
